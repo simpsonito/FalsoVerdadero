@@ -6,135 +6,24 @@
     <meta name="keywords" content="Falso verdadero, Javascript, HTML5, Diseño responsivo">
     <meta name="author" content="Adib Abud Jaso">
     <meta name="viewport" content="width=device-width, user-scalable=no">
-<title>Falso o verdadero</title>
-
-<script language="javascript">
-
-var pregunta1 = {texto:"No todo lo que brilla es oro", valor:true};
-var pregunta2 = {texto:"La suma del cuadrado de los catetos es igual a la raíz cuadrada de la hipotenusa. La suma del cuadrado de los catetos es igual a la raíz cuadrada de la hipotenusa. La suma del cuadrado de los catetos es igual a la raíz cuadrada de la hipotenusa.", valor:false};
-var pregunta3 = {texto:"Realizar lecturas con poca luz ejercita la visión y es bueno para la salud", valor:false};
-
-var conjuntoPreguntas = [pregunta1, pregunta2, pregunta3];
-var buenas = 0;
-
-function alCargar(){
-	//alert("cargó :)");
-	
-}
-
-function revisar(){
-	//alert("revisando"); 
-	for(var i = 0; i<conjuntoPreguntas.length; i++){
-		revisarReactivo(i);
-	}
-	
-	retroalimentar('Obtuviste '+ buenas + " de " + conjuntoPreguntas.length +'. <input type="button" value="Otra vez" onClick="window.location.reload()">');
-	buenas = 0;
-}
-function revisarReactivo(numero){
-	var radios = document.getElementsByName('pregunta'+numero);
-	document.getElementsByClassName('palomita').item(numero).style.display = "none";
-	document.getElementsByClassName('tache').item(numero).style.display = "none";
-	for (var i = 0; i < radios.length; i++) {
-		if (radios[i].checked) {
-			// do whatever you want with the checked radio
-			//alert(radios[i].value+ " - " + conjuntoPreguntas[numero].valor);
-			// only one radio can be logically checked, don't check the rest
-			if(radios[i].value.toString() == conjuntoPreguntas[numero].valor.toString()){
-				buenas++;
-				document.getElementsByClassName('palomita').item(numero).style.display = "";
-			} else {
-				document.getElementsByClassName('tache').item(numero).style.display = "";
-			}
-			break;
-		}
-	}
-}
-
-function retroalimentar(texto){
-	document.getElementById("retroalimentacion").innerHTML = texto;
-}
-
-function shuffle(array) {
-  var currentIndex = array.length
-    , temporaryValue
-    , randomIndex
-    ;
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return array;
-}
-
-</script>
-<link href="estilosTabla.css" rel="stylesheet" type="text/css">
-<style>
-body{
-	font-family:"Helvetica", Arial, sans-serif;
-	font-size:0.9em;
-}
-.tablaPreguntas {
-	max-width:50em;	
-}
-.preguntaOpciones{
-	width: 10%;
-	height:4em;
-	text-align:center;
-}
-#retroalimentacion{
-	margin:1em;
-	text-align:center;
-}
-@media screen and (max-width: 480px) {
-    html, body {
-        margin: 0;
-        padding: 0;
-        font-size: 1em;
-    }
-    #main{
-        padding: 0;
-        border: none;
-        margin:0;
-    }
-}
-</style>
-
+    <title>Falso o verdadero</title>
+    <link href="css/estilosTabla.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/falsoVerdadero.js"></script>
 </head>
 
-<body onLoad="alCargar()">
-<form action="" method="get" onsubmit="return false">
+<body>
 <div id="main">
-<h1>Falso o verdadero</h1>
-<table class="features-table">
-<tr>
-  <th>Verdadero</th>
-  <th>Falso</th>
-  <th>&nbsp;</th>
-</tr>
-<script type="text/javascript">
-
-conjuntoPreguntas = shuffle(conjuntoPreguntas);//Remover esta línea si no se quiere revolver
-
-for (var i=0; i<conjuntoPreguntas.length; i++) {
-	document.write("<tr class='setPregunta'><td class='preguntaOpciones'><img class='palomita' style='display:none' src='palomita.png' /><img class='tache' style='display:none' src='tache.png' /><input type='radio' name='pregunta"+i+"' value='true'> </td><td class='preguntaOpciones'><input type='radio' name='pregunta"+i+"' value='false'> </td><td class='preguntaTexto'>" + conjuntoPreguntas[i].texto + "</td></tr>");
-}
-
-</script>
-<tr><td>&nbsp;</td><td><button onClick="revisar()">Revisar</button></td><td>&nbsp;</td></tr>
-</table>
+    <h1>Falso o verdadero</h1>
+    <table class="features-table">
+        <tr>
+          <th>Verdadero</th>
+          <th>Falso</th>
+          <th>&nbsp;</th>
+        </tr>
+        <tr id="preguntasEjercicio"></tr>
+        <tr><td>&nbsp;</td><td><button id="botonRevisar">Revisar</button></td><td>&nbsp;</td></tr>
+    </table>
 </div>
-</form>
-
-
-
 
 <div id="retroalimentacion"></div>
 

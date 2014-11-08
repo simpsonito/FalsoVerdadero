@@ -3,7 +3,8 @@ body
 {
 	margin: 0;
 	padding: 0;
-	/*background: white url(http://www.red-team-design.com/wp-content/themes/redv2/images/back.jpg) no-repeat left top;*/
+    font-family:"Helvetica", Arial, sans-serif;
+    font-size:0.9em;
 }
 
 #main
@@ -103,3 +104,28 @@ body
 {
   border-bottom: none;
 }/* CSS Document */
+
+.tablaPreguntas {
+    max-width:50em;
+}
+.preguntaOpciones{
+    width: 10%;
+    height:4em;
+    text-align:center;
+}
+#retroalimentacion{
+    margin:1em;
+    text-align:center;
+}
+@media screen and (max-width: 480px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-size: 1em;
+    }
+    #main{
+        padding: 0;
+        border: none;
+        margin:0;
+    }
+}
